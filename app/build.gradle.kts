@@ -15,11 +15,11 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import com.geeksville.mesh.buildlogic.GitVersionValueSource
+// REMOVED: import com.geeksville.mesh.buildlogic.GitVersionValueSource
 import java.io.FileInputStream
 import java.util.Properties
 
-val gitVersionProvider = providers.of(GitVersionValueSource::class.java) {}
+// REMOVED: val gitVersionProvider ...
 
 plugins {
     alias(libs.plugins.meshtastic.android.application)
@@ -66,12 +66,15 @@ android {
 
         val vcOffset = configProperties.getProperty("VERSION_CODE_OFFSET")?.toInt() ?: 0
         println("Version code offset: $vcOffset")
-        versionCode =
+        
+        // MODIFIED: Hardcoded versionCode for test build (Bypassing Git check)
+        versionCode = 
             (
                 project.findProperty("android.injected.version.code")?.toString()?.toInt()
                     ?: System.getenv("VERSION_CODE")?.toInt()
-                    ?: (gitVersionProvider.get().toInt() + vcOffset)
-                )
+                    ?: (200 + vcOffset) // Hardcoded value (e.g. 200) instead of gitVersionProvider.get()
+            )
+            
         versionName =
             (
                 project.findProperty("android.injected.version.name")?.toString()
