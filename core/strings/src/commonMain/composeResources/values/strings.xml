@@ -157,6 +157,7 @@
     <string name="config_security_serial_enabled">Serial Console over the Stream API.</string>
     <string name="config_security_debug_log_api_enabled">Output live debug logging over serial, view and export position-redacted device logs over Bluetooth.</string>
 
+    <!-- Position Config -->
     <string name="position_packet">Position Packet</string>
     <string name="broadcast_interval">Broadcast Interval</string>
     <string name="smart_position">Smart Position</string>
@@ -181,7 +182,7 @@
     <string name="application_icon">application icon</string>
     <string name="unknown_username">Unknown Username</string>
     <string name="send">Send</string>
-    <string name="warning_not_paired">You haven't yet paired a Pangea compatible radio with this phone. Please pair a device and set your username.\n\nThis open-source application is in development, if you find problems please post on our forum: https://github.com/orgs/meshtastic/discussions.\n\nFor more information see our web page - www.meshtastic.org.</string>
+    <string name="warning_not_paired">You haven't yet paired a Pangea compatible radio with this phone. Please pair a device and set your username.\n\nThis open-source application is in development.</string>
     <string name="you">You</string>
     <string name="analytics_okay">Allow analytics and crash reporting.</string>
     <string name="accept">Accept</string>
@@ -375,7 +376,7 @@
     <string name="meshtastic_new_nodes_notifications">New node notifications</string>
     <string name="more_details">More details</string>
     <string name="snr">SNR</string>
-    <string name="snr_definition">Signal-to-Noise Ratio, a measure used in communications to quantify the level of a desired signal to the level of background noise. In Meshtastic and other wireless systems, a higher SNR indicates a clearer signal that can enhance the reliability and quality of data transmission.</string>
+    <string name="snr_definition">Signal-to-Noise Ratio, a measure used in communications to quantify the level of a desired signal to the level of background noise. In Pangea and other wireless systems, a higher SNR indicates a clearer signal that can enhance the reliability and quality of data transmission.</string>
     <string name="rssi">RSSI</string>
     <string name="rssi_definition">Received Signal Strength Indicator, a measurement used to determine the power level being received by the antenna. A higher RSSI value generally indicates a stronger and more stable connection.</string>
     <string name="iaq_definition">(Indoor Air Quality) relative scale IAQ value as measured by Bosch BME680. Value Range 0–500.</string>
@@ -803,15 +804,19 @@
 
     <string name="security_icon_help_green_lock">A green lock means the channel is securely encrypted with either a 128 or 256 bit AES key.</string>
 
+    <!-- INSECURE_NO_PRECISE State (Yellow Open Lock) -->
     <string name="security_icon_insecure_no_precise">Insecure Channel, Not Precise</string>
     <string name="security_icon_help_yellow_open_lock">A yellow open lock means the channel is not securely encrypted, is not used for precise location data, and uses either no key at all or a 1 byte known key.</string>
 
+    <!-- INSECURE_PRECISE_ONLY State (Red Open Lock) -->
     <string name="security_icon_insecure_precise_only">Insecure Channel, Precise Location</string>
     <string name="security_icon_help_red_open_lock">A red open lock means the channel is not securely encrypted, is used for precise location data, and uses either no key at all or a 1 byte known key.</string>
 
+    <!-- INSECURE_PRECISE_MQTT_WARNING State (Red Open Lock with Warning Badge) -->
     <string name="security_icon_warning_precise_mqtt">Warning: Insecure, Precise Location &amp; MQTT Uplink</string>
     <string name="security_icon_help_warning_precise_mqtt">A red open lock with a warning means the channel is not securely encrypted, is used for precise location data which is being uplinked to the internet via MQTT, and uses either no key at all or a 1 byte known key.</string>
 
+    <!-- Security Help Dialog Titles and Buttons (from your existing code structure) -->
     <string name="security_icon_help_title">Channel Security</string>
     <string name="security_icon_help_title_all">Channel Security Meanings</string>
     <string name="security_icon_help_show_all">Show All Meanings</string>
@@ -841,7 +846,7 @@
     <string name="installed_firmware_version">Currently Installed</string>
     <string name="latest_stable_firmware">Latest stable</string>
     <string name="latest_alpha_firmware">Latest alpha</string>
-    <string name="supported_by_community">Supported by Meshtastic Community</string>
+    <string name="supported_by_community">Supported by Pangea Community</string>
     <string name="firmware_edition">Firmware Edition</string>
     <string name="recent_network_devices">Recent Network Devices</string>
     <string name="discovered_network_devices">Discovered Network Devices</string>
