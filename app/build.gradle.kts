@@ -52,8 +52,7 @@ android {
     compileSdk = configProperties.getProperty("COMPILE_SDK").toInt()
 
     signingConfigs {
-    
-    create("release") {
+        create("release") {
             keyAlias = keystoreProperties["keyAlias"] as String?
             keyPassword = keystoreProperties["keyPassword"] as String?
             storeFile = keystoreProperties["storeFile"]?.let { file(it) }
@@ -69,15 +68,13 @@ android {
         println("Version code offset: $vcOffset")
         versionCode =
             (
-                
-            project.findProperty("android.injected.version.code")?.toString()?.toInt()
+                project.findProperty("android.injected.version.code")?.toString()?.toInt()
                     ?: System.getenv("VERSION_CODE")?.toInt()
                     ?: (gitVersionProvider.get().toInt() + vcOffset)
                 )
         versionName =
             (
                 project.findProperty("android.injected.version.name")?.toString()
-   
                     ?: System.getenv("VERSION_NAME")
                     ?: configProperties.getProperty("VERSION_NAME_BASE")
                 )
@@ -91,7 +88,6 @@ android {
             listOf(
                 "en",
                 "ar",
-             
                 "bg",
                 "ca",
                 "cs",
@@ -99,28 +95,24 @@ android {
                 "el",
                 "es",
                 "et",
- 
                 "fi",
                 "fr",
                 "ga",
                 "gl",
                 "hr",
                 "ht",
-     
                 "hu",
                 "is",
                 "it",
                 "iw",
                 "ja",
                 "ko",
-         
                 "lt",
                 "nl",
                 "no",
                 "pl",
                 "pt",
                 "pt-rBR",
-             
                 "ro",
                 "ru",
                 "sk",
@@ -128,7 +120,6 @@ android {
                 "sq",
                 "sr",
                 "srp",
- 
                 "sv",
                 "tr",
                 "uk",
@@ -136,7 +127,6 @@ android {
                 "zh-rTW",
             ),
         )
- 
         ndk { abiFilters += listOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64") }
 
         dependenciesInfo {
@@ -144,7 +134,6 @@ android {
             includeInApk = false
             // Disables dependency metadata when building Android App Bundles (for Google Play)
             includeInBundle = false
-     
         }
     }
 
@@ -159,7 +148,6 @@ android {
         }
 
         named("google") { versionName = "${defaultConfig.versionName} (${defaultConfig.versionCode}) google" }
-   
         named("fdroid") { versionName = "${defaultConfig.versionName} (${defaultConfig.versionCode}) fdroid" }
     }
 
@@ -169,7 +157,6 @@ android {
                 signingConfig = signingConfigs.named("release").get()
             } else {
                 signingConfig = signingConfigs.getByName("debug")
-    
             }
             isMinifyEnabled = true
             isShrinkResources = true
@@ -187,7 +174,6 @@ secrets {
 // workaround for https://github.com/google/ksp/issues/1590
 androidComponents {
     onVariants(selector().all()) { variant ->
-  
         if (variant.name == "fdroidDebug") {
             variant.applicationId = "com.geeksville.mesh.fdroid.debug"
         }
@@ -198,7 +184,6 @@ androidComponents {
     }
     onVariants(selector().withBuildType("release")) { variant ->
         if (variant.flavorName == "google") {
-           
             val variantNameCapped = variant.name.replaceFirstChar { it.uppercase() }
             val minifyTaskName = "minify${variantNameCapped}WithR8"
             val uploadTaskName = "uploadMapping$variantNameCapped"
@@ -206,7 +191,6 @@ androidComponents {
                 tasks.named(minifyTaskName).configure { finalizedBy(uploadTaskName) }
             }
         }
-    
     }
 }
 
@@ -236,7 +220,6 @@ dependencies {
     implementation(libs.androidx.compose.material3.adaptive)
     implementation(libs.androidx.compose.material3.navigationSuite)
     implementation(libs.material)
-   
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.material.iconsExtended)
     implementation(libs.androidx.compose.ui.tooling.preview)
@@ -264,7 +247,6 @@ dependencies {
 
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 
-  
     googleImplementation(libs.location.services)
     googleImplementation(libs.play.services.maps)
 
@@ -291,7 +273,6 @@ tasks.configureEach {
 }
 
 dokka {
-   
     moduleName.set("Pangea App")
     dokkaSourceSets.main {
         sourceLink {
@@ -301,7 +282,6 @@ dokka {
             reportUndocumented.set(true)
             localDirectory.set(file("src/main/java"))
             remoteUrl("https://github.com/geeksville/Meshtastic-Android/app/src/main/java")
-            
             remoteLineSuffix.set("#L")
         }
     }
