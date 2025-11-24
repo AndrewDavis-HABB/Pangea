@@ -193,7 +193,7 @@
     <string name="permission_missing">Pangea needs location permissions enabled to find new devices via Bluetooth. You can disable when not in use.</string>
     <string name="report_bug">Report Bug</string>
     <string name="report_a_bug">Report a bug</string>
-    <string name="report_bug_text">Are you sure you want to report a bug? After reporting, please post in https://github.com/orgs/meshtastic/discussions so we can match up the report with what you found.</string>
+    <string name="report_bug_text">Are you sure you want to report a bug? After reporting, please post in https://github.com/HabbTech/Pangea/issues so we can match up the report with what you found.</string>
     <string name="report">Report</string>
     <string name="pairing_completed">Pairing completed, starting service</string>
     <string name="pairing_failed_try_again">Pairing failed, please select again</string>
