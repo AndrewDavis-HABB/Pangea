@@ -102,6 +102,10 @@ class SettingsViewModel(
     private val _excludedModulesUnlocked = MutableStateFlow(false)
     val excludedModulesUnlocked: StateFlow<Boolean> = _excludedModulesUnlocked.asStateFlow()
 
+    val expertModeEnabled: StateFlow<Boolean> = uiPrefs.expertModeEnabled
+
+    fun setExpertModeEnabled(enabled: Boolean) = uiPrefs.setExpertModeEnabled(enabled)
+
     val appVersionName
         get() = buildConfigProvider.versionName
 

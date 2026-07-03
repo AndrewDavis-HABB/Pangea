@@ -530,6 +530,8 @@ ethernet_ip
 exchange_position
 expand_chart
 expanded
+expert_mode
+expert_mode_summary
 expires
 ### EXPORT ###
 export_configuration
@@ -913,6 +915,7 @@ minimum_interval
 minimum_wake_time_seconds
 modem_preset
 module_settings
+modules
 modules_already_unlocked
 modules_unlocked
 more_reactions
@@ -1174,6 +1177,7 @@ quick_chat_instant
 quick_chat_new
 quick_chat_show
 radiation
+radio
 radio_configuration
 rainfall_1h
 rainfall_24h
