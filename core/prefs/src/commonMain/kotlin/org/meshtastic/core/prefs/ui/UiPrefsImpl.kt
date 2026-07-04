@@ -35,6 +35,7 @@ import org.koin.core.annotation.Named
 import org.koin.core.annotation.Single
 import org.meshtastic.core.di.CoroutineDispatchers
 import org.meshtastic.core.model.DeviceType
+import org.meshtastic.core.model.PowerMode
 import org.meshtastic.core.prefs.cachedFlow
 import org.meshtastic.core.repository.UiPrefs
 
@@ -54,6 +55,15 @@ class UiPrefsImpl(
 
     override fun setAppIntroCompleted(completed: Boolean) {
         scope.launch { dataStore.edit { it[KEY_APP_INTRO_COMPLETED] = completed } }
+    }
+
+    override val powerMode: StateFlow<PowerMode> =
+        dataStore.data
+            .map { PowerMode.fromName(it[KEY_POWER_MODE]) }
+            .stateIn(scope, SharingStarted.Eagerly, PowerMode.STANDARD)
+
+    override fun setPowerMode(mode: PowerMode) {
+        scope.launch { dataStore.edit { it[KEY_POWER_MODE] = mode.name } }
     }
 
     override val theme: StateFlow<Int> =
@@ -270,6 +280,7 @@ class UiPrefsImpl(
         val KEY_SHOW_QUICK_CHAT_PREF = booleanPreferencesKey("show-quick-chat")
 
         val KEY_APP_INTRO_COMPLETED = booleanPreferencesKey("app_intro_completed")
+        val KEY_POWER_MODE = stringPreferencesKey("power_mode")
         val KEY_THEME = intPreferencesKey("theme")
         val KEY_LOCALE = stringPreferencesKey("locale")
         val KEY_NODE_SORT = intPreferencesKey("node-sort-option")

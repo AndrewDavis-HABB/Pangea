@@ -44,7 +44,9 @@ import org.meshtastic.core.model.ConnectionState
 import org.meshtastic.core.model.DeviceType
 import org.meshtastic.core.network.repository.NetworkRepository
 import org.meshtastic.core.network.repository.SerialDevicePresence
+import org.meshtastic.core.model.PowerMode
 import org.meshtastic.core.repository.PlatformAnalytics
+import org.meshtastic.core.repository.PowerModeManager
 import org.meshtastic.core.repository.RadioTransport
 import org.meshtastic.core.repository.RadioTransportFactory
 import org.meshtastic.core.repository.TransportDisconnectReason
@@ -133,6 +135,7 @@ class SharedRadioInterfaceServiceLivenessTest {
 
     private val networkRepository: NetworkRepository = mock(MockMode.autofill)
     private val analytics: PlatformAnalytics = mock(MockMode.autofill)
+    private val fakePowerModeManager = FakePowerModeManager()
 
     /**
      * Minimal [LifecycleOwner] for tests that avoids [LifecycleRegistry], which enforces main-thread checks and throws
@@ -257,6 +260,7 @@ class SharedRadioInterfaceServiceLivenessTest {
                 radioPrefs = radioPrefs,
                 transportFactory = transportFactory,
                 analytics = analytics,
+                powerModeManager = fakePowerModeManager,
             )
         service.clockMillis = { clock }
         // Register the service so tearDown can disconnect it deterministically (the heartbeat loop
@@ -1682,5 +1686,20 @@ class SharedRadioInterfaceServiceLivenessTest {
             service.disconnect()
             advanceTimeBy(1_000L)
         }
+    }
+}
+
+/** Controllable [PowerModeManager] for tests: effective mode is whatever [mode] holds; no OS clamping. */
+private class FakePowerModeManager : PowerModeManager {
+    val mode = MutableStateFlow(PowerMode.STANDARD)
+    override val selectedMode: StateFlow<PowerMode>
+        get() = mode
+
+    override val systemPowerSave: StateFlow<Boolean> = MutableStateFlow(false)
+    override val effectiveMode: StateFlow<PowerMode>
+        get() = mode
+
+    override fun setSelectedMode(mode: PowerMode) {
+        this.mode.value = mode
     }
 }
