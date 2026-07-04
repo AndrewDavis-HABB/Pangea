@@ -80,6 +80,7 @@ import org.meshtastic.feature.settings.component.AppInfoSection
 import org.meshtastic.feature.settings.component.AppearanceSection
 import org.meshtastic.feature.settings.component.ExpressiveSection
 import org.meshtastic.feature.settings.component.PersistenceSection
+import org.meshtastic.feature.settings.component.PowerModeSection
 import org.meshtastic.feature.settings.component.PrivacySection
 import org.meshtastic.feature.settings.component.ThemePickerDialog
 import org.meshtastic.feature.settings.navigation.ConfigRoute
@@ -272,6 +273,8 @@ fun SettingsScreen(
                     onShowLanguagePicker = { showLanguagePickerDialog = true },
                     onShowThemePicker = { showThemePickerDialog = true },
                 )
+
+                PowerModeSection()
 
                 ExpressiveSection(title = stringResource(Res.string.node_layout_section_title)) {
                     ListItem(
