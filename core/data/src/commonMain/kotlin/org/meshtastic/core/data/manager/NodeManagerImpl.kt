@@ -188,7 +188,7 @@ class NodeManagerImpl(
             val defaultUser =
                 User(
                     id = userId,
-                    long_name = "Meshtastic ${userId.takeLast(n = 4)}",
+                    long_name = "Pangea ${userId.takeLast(n = 4)}",
                     short_name = userId.takeLast(n = 4),
                     hw_model = HardwareModel.UNSET,
                 )
