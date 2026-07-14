@@ -88,39 +88,39 @@ fun MainScreen() {
     }
 
     CompositionLocalProvider(LocalPowerModeMenu provides rememberPowerModeMenu(multiBackstack)) {
-    MeshtasticAppShell(multiBackstack = multiBackstack, uiViewModel = viewModel, hostModifier = Modifier) {
-        MeshtasticNavigationSuite(
-            multiBackstack = multiBackstack,
-            uiViewModel = viewModel,
-            modifier = Modifier.fillMaxSize(),
-        ) {
-            val provider =
-                entryProvider<NavKey> {
-                    contactsGraph(backStack, scrollToTopEvents, onHandleDeepLink = viewModel::handleDeepLink)
-                    nodesGraph(
-                        backStack = backStack,
-                        scrollToTopEvents = scrollToTopEvents,
-                        onHandleDeepLink = viewModel::handleDeepLink,
-                        onNavigateToConnections = {
-                            multiBackstack.navigateTopLevel(TopLevelDestination.Connect.route)
-                        },
-                    )
-                    mapGraph(backStack)
-                    channelsGraph(backStack)
-                    connectionsGraph(backStack)
-                    discoveryGraph(backStack)
-                    settingsGraph(backStack)
-                    docsEntries(backStack)
-                    firmwareGraph(backStack)
-                    wifiProvisionGraph(backStack)
-                }
-            MeshtasticNavDisplay(
+        MeshtasticAppShell(multiBackstack = multiBackstack, uiViewModel = viewModel, hostModifier = Modifier) {
+            MeshtasticNavigationSuite(
                 multiBackstack = multiBackstack,
-                entryProvider = provider,
-                modifier = Modifier.fillMaxSize().recalculateWindowInsets().safeDrawingPadding(),
-            )
+                uiViewModel = viewModel,
+                modifier = Modifier.fillMaxSize(),
+            ) {
+                val provider =
+                    entryProvider<NavKey> {
+                        contactsGraph(backStack, scrollToTopEvents, onHandleDeepLink = viewModel::handleDeepLink)
+                        nodesGraph(
+                            backStack = backStack,
+                            scrollToTopEvents = scrollToTopEvents,
+                            onHandleDeepLink = viewModel::handleDeepLink,
+                            onNavigateToConnections = {
+                                multiBackstack.navigateTopLevel(TopLevelDestination.Connect.route)
+                            },
+                        )
+                        mapGraph(backStack)
+                        channelsGraph(backStack)
+                        connectionsGraph(backStack)
+                        discoveryGraph(backStack)
+                        settingsGraph(backStack)
+                        docsEntries(backStack)
+                        firmwareGraph(backStack)
+                        wifiProvisionGraph(backStack)
+                    }
+                MeshtasticNavDisplay(
+                    multiBackstack = multiBackstack,
+                    entryProvider = provider,
+                    modifier = Modifier.fillMaxSize().recalculateWindowInsets().safeDrawingPadding(),
+                )
+            }
         }
-    }
     }
 }
 
